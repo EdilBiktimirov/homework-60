@@ -22,10 +22,16 @@ const ChatForm = () => {
     data.set('message', post.message);
     data.set('author', post.author);
 
-    await fetch(url, {
-      method: 'post',
-      body: data,
-    });
+    try {
+      await fetch(url, {
+        method: 'post',
+        body: data,
+      });
+    } catch (error) {
+      console.log('Error: ' + error);
+    }
+
+    setPost((prev) => ({...prev, author: '', message: ''}));
   };
 
   const onInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -90,6 +96,7 @@ const ChatForm = () => {
           onChange={onInputChange}
           placeholder="Enter your name:"
           sx={{m: 2}}
+          value={post.author}
         />
         <TextField
           id="standard-basic"
@@ -98,6 +105,7 @@ const ChatForm = () => {
           className="UserMessage"
           onChange={onTextareaChange}
           sx={{m: 2}}
+          value={post.message}
         />
         <ChatBtn btnName={"Send"} key={Math.random()}/>
       </form>
