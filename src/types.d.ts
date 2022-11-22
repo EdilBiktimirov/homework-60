@@ -10,3 +10,7 @@ export interface Messages {
   author: string;
   datetime: string;
 }
+
+export interface DataObject {
+  time?: string
+}

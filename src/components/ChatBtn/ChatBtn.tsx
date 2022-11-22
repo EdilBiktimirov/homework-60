@@ -1,4 +1,5 @@
 import React from 'react';
+import {Button} from "@mui/material";
 
 interface Props {
   btnName: string;
@@ -8,13 +9,15 @@ interface Props {
 const ChatBtn: React.FC<Props> = ({btnName, onBtnClick}) => {
   return (
     <>
-      <button
+      <Button
+        variant="contained" color="success"
         className="Btn"
         type="submit"
         onClick={onBtnClick}
+        sx={{display: 'block', width: '150px', mx: 'auto'}}
       >
         {btnName}
-      </button>
+      </Button>
     </>
   );
 };
